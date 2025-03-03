@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "440485747817",
+    "project_id": "ashop-51800",
+    "storage_bucket": "ashop-51800.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440485747817:android:cb120013de718aab4fd6f8",
+        "android_client_info": {
+          "package_name": "com.example.fmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440485747817-lfrfjdn015b557hv7fhd9k95av7qivvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO558kAvRMXrbS_bs-mk9bkEicmOfyNYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440485747817-lfrfjdn015b557hv7fhd9k95av7qivvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
