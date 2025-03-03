@@ -118,6 +118,7 @@ class _ProductdetalisState extends State<ProductDetails> {
                 trimExpandedText: 'Show less',
                 moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
+              Divider(),
             ],
           ),
         ),
