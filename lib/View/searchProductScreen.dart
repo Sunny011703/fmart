@@ -209,15 +209,15 @@ class _SearchproductscreenState extends State<Searchproductscreen> {
                             child: Image.network(
                               product.image ??
                                   "https://via.placeholder.com/150",
-                              width: 60,
-                              height: 60,
+                              width: 70,
+                              height: 50,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return Image.network(
                                   "https://via.placeholder.com/150",
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.cover,
+                                  width: 70,
+                                  height: 50,
+                                  fit: BoxFit.fill,
                                 );
                               },
                             ),

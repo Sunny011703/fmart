@@ -29,14 +29,14 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     final apiService = ProductsApiService();
     final data = await apiService.fetchProducts();
 
-    log("API Response: ${data.toString()}");
+    log("API Response: \${data.toString()}");
 
     if (data != null && data.products != null && data.products!.isNotEmpty) {
       setState(() {
         productsList = data.products!;
         isLoading = false;
       });
-      log("Total Products Fetched: ${productsList.length}");
+      log("Total Products Fetched: \${productsList.length}");
     } else {
       setState(() {
         isLoading = false;
@@ -102,10 +102,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           Container(
                             height: screenWidth * 0.2,
                             width: screenWidth * 0.3,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            color: Colors.white,
                           ),
                           const SizedBox(width: 16),
                           Expanded(
@@ -132,91 +129,87 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   },
                 ),
               )
-              : Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                child: ListView.builder(
-                  itemCount: productsList.length,
-                  itemBuilder: (context, index) {
-                    final product = productsList[index];
-                    return GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => ProductDetails(
-                            product: product,
-                            imagesPath: product.image ?? "",
-                            Category: product.category ?? "No category",
-                            productPrice: product.price!,
-                            productdescription:
-                                product.description ?? "No description",
-                          ),
-                          transition: Transition.rightToLeftWithFade,
-                          duration: Duration(milliseconds: 400),
-                        );
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(6),
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.fromBorderSide(
-                            BorderSide(width: 0.5, color: Colors.black12),
-                          ),
+              : ListView.builder(
+                padding: EdgeInsets.all(10),
+                itemCount: productsList.length,
+                itemBuilder: (context, index) {
+                  final product = productsList[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        () => ProductDetails(
+                          product: product,
+                          imagesPath: product.image ?? "",
+                          Category: product.category ?? "No category",
+                          productPrice: product.price ?? 0.0,
+                          productdescription:
+                              product.description ?? "No description",
                         ),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
-                              child: Image.network(
-                                product.image ??
-                                    "https://via.placeholder.com/150",
-                                width: screenWidth * 0.3,
-                                height: screenHeight * 0.13,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Image.network(
-                                    "https://via.placeholder.com/150",
-                                    width: screenWidth * 0.3,
-                                    height: screenHeight * 0.13,
-                                    fit: BoxFit.cover,
-                                  );
-                                },
-                              ),
-                            ),
-                            SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    product.category ?? "No Category",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    product.title ?? "No Title",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    "\$${product.price?.toStringAsFixed(2) ?? '0.00'}",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite),
-                            ),
-                          ],
-                        ),
+                        transition: Transition.rightToLeftWithFade,
+                        duration: Duration(milliseconds: 400),
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(6),
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(width: 0.5, color: Colors.black12),
                       ),
-                    );
-                  },
-                ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Image.network(
+                              product.image ??
+                                  "https://via.placeholder.com/150",
+                              width: screenWidth * 0.3,
+                              height: screenHeight * 0.09,
+                              fit: BoxFit.fill,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.network(
+                                  "https://via.placeholder.com/150",
+                                  width: screenWidth * 0.3,
+                                  height: screenHeight * 0.2,
+                                  fit: BoxFit.fill,
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.category ?? "No Category",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  product.title ?? "No Title",
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "\$${product.price?.toStringAsFixed(2) ?? '0.00'}",
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.favorite),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
     );
   }

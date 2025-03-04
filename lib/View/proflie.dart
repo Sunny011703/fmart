@@ -19,9 +19,19 @@ class UserprofileScreen extends StatefulWidget {
 
 class _UserprofileScreenState extends State<UserprofileScreen> {
   Future<void> logout() async {
-    await GoogleSignIn().disconnect();
-    FirebaseAuth.instance.signOut();
-    Get.offAll(() => LoginScreen());
+    try {
+      GoogleSignIn googleSignIn = GoogleSignIn();
+
+      // Pehle check karo ki Google account sign-in hai ya nahi
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.signOut(); // Google Sign-Out
+      }
+
+      await FirebaseAuth.instance.signOut(); // Firebase Logout
+      Get.offAll(() => LoginScreen()); // Navigate to Login
+    } catch (e) {
+      print("Logout Error: $e");
+    }
   }
 
   final ImagePicker _imagePicker = ImagePicker();

@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     fetchProductsData();
+    
   }
 
   Future<void> fetchProductsData() async {
@@ -273,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           "https://via.placeholder.com/150",
                                       width: screenWidth * 0.6,
                                       height: screenHeight * 0.2,
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                   Padding(

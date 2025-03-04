@@ -4,13 +4,25 @@ import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DRAWERWIDGET extends StatelessWidget {
+
+class DRAWERWIDGET extends StatefulWidget {
   const DRAWERWIDGET({
     super.key,
   });
 
   @override
+  State<DRAWERWIDGET> createState() => _DRAWERWIDGETState();
+}
+
+class _DRAWERWIDGETState extends State<DRAWERWIDGET> {
+  //  Future<void> logout() async {
+  //   await GoogleSignIn().disconnect();
+  //   FirebaseAuth.instance.signOut();
+  //   Get.offAll(() => LoginScreen());
+  // }
+  @override
   Widget build(BuildContext context) {
+    
     return ListView(
       padding: EdgeInsets.zero,
       children: [
@@ -78,7 +90,7 @@ class DRAWERWIDGET extends StatelessWidget {
           leading: Icon(Icons.logout),
           title: Text("Logout", style: GoogleFonts.poppins(fontSize: 14)),
           onTap: () {
-            Navigator.pop(context);
+            // logout();
           },
         ),
       ],
